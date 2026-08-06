@@ -1,13 +1,13 @@
 <!doctype html><html lang="ru"><meta charset="utf-8"><title>Тетрис</title>
-<style>body{margin:0;background:#111;color:#fff;text-align:center;font:18px sans-serif}canvas{background:#000;border:3px solid}button{padding:8px 18px;font:inherit}</style>
-<h2>Тетрис — <span id="s">0</span></h2><canvas id="c" width="240" height="400"></canvas>
-<p>← → двигать · ↑ вращать · ↓ ускорить</p><button onclick="start()">Заново</button>
+<style>body{margin:0;background:#111;color:#fff;font:20px sans-serif;text-align:center}canvas{background:#000;border:3px solid #fff}p{margin:12px}</style>
+<h1>Тетрис — <span id="s">0</span></h1><canvas id="c" width="240" height="400"></canvas>
+<p>← → двигать · ↑ повернуть · ↓ ускорить · пробел бросить</p>
 <script>
-const c=document.querySelector('#c'),x=c.getContext('2d'),S=20,W=12,H=20,C=['','#0ff','#ff0','#a0f','#0f0','#f00','#00f','#f80'],P=['1111','11/11','010/111','011/110','110/011','100/111','001/111'];let b,p,px,py,n,t;
-function start(){clearInterval(t);b=Array.from({length:H},()=>Array(W).fill(0));n=0;s.textContent=n;next();t=setInterval(down,500);draw()}
-function next(){let k=Math.random()*7|0;p=P[k].split('/').map(r=>[...r].map(v=>+v*(k+1)));px=4;py=0;if(hit(p,px,py)){clearInterval(t);setTimeout(()=>alert('Игра окончена'),10)}}
-function hit(a,X,Y){return a.some((r,y)=>r.some((v,z)=>v&&(Y+y>=H||X+z<0||X+z>=W||b[Y+y]?.[X+z])))}
-function down(){if(!hit(p,px,py+1))py++;else{p.forEach((r,y)=>r.forEach((v,z)=>v&&(b[py+y][px+z]=v)));for(let y=H-1;y>=0;y--)if(b[y].every(Boolean)){b.splice(y,1);b.unshift(Array(W).fill(0));s.textContent=n+=100;y++}next()}draw()}
-function draw(){x.clearRect(0,0,c.width,c.height);[b,p].forEach((a,i)=>a.forEach((r,y)=>r.forEach((v,z)=>{if(v){x.fillStyle=C[v];x.fillRect((z+(i?px:0))*S,(y+(i?py:0))*S,S-1,S-1)}})))}
-onkeydown=e=>{if(e.key=='ArrowLeft'&&!hit(p,px-1,py))px--;if(e.key=='ArrowRight'&&!hit(p,px+1,py))px++;if(e.key=='ArrowDown')down();if(e.key=='ArrowUp'){let q=p[0].map((_,i)=>p.map(r=>r[i]||0).reverse());if(!hit(q,px,py))p=q}draw();if(e.key.startsWith('Arrow'))e.preventDefault()};start()
-</script></html>
+const c=document.querySelector('canvas'),x=c.getContext('2d'),q=document.querySelector('#s'),W=12,H=20,A=Array.from({length:H},()=>Array(W).fill(0)),C=['','#0ff','#ff0','#a0f','#0f0','#f00','#00f','#fa0'],S=[[[1,1,1,1]],[[2,2],[2,2]],[[0,3,0],[3,3,3]],[[0,4,4],[4,4,0]],[[5,5,0],[0,5,5]],[[6,0,0],[6,6,6]],[[0,0,7],[7,7,7]]];let p,score=0,over=0;
+function piece(){let n=Math.random()*7|0;p={a:S[n].map(r=>[...r]),x:5,y:0};if(hit())over=1}
+function hit(){return p.a.some((r,y)=>r.some((v,z)=>v&&(A[p.y+y]?.[p.x+z]??1)))}
+function move(dx,dy){p.x+=dx;p.y+=dy;if(hit()){p.x-=dx;p.y-=dy;if(dy){p.a.forEach((r,y)=>r.forEach((v,z)=>v&&(A[p.y+y][p.x+z]=v)));for(let y=H-1;y>=0;y--)if(A[y].every(Boolean)){A.splice(y,1);A.unshift(Array(W).fill(0));score+=100;y++}q.textContent=score;piece()}return 0}return 1}
+function turn(){let a=p.a;p.a=a[0].map((_,i)=>a.map(r=>r[i]).reverse());if(hit())p.a=a}
+function draw(){x.clearRect(0,0,240,400);function d(a,X=0,Y=0){a.forEach((r,y)=>r.forEach((v,z)=>{if(v){x.fillStyle=C[v];x.fillRect((z+X)*20,(y+Y)*20,19,19)}}))}d(A);d(p.a,p.x,p.y);if(over){x.fillStyle='#fff';x.fillText('Игра окончена',48,190);x.fillText('Enter — заново',45,220)}}
+document.onkeydown=e=>{if(over&&e.key=='Enter'){A.forEach(r=>r.fill(0));score=0;q.textContent=0;over=0;piece()}if(over)return;if(e.key=='ArrowLeft')move(-1,0);if(e.key=='ArrowRight')move(1,0);if(e.key=='ArrowDown')move(0,1);if(e.key=='ArrowUp')turn();if(e.code=='Space')while(move(0,1));draw();e.preventDefault()};piece();setInterval(()=>{if(!over)move(0,1);draw()},500);
+</script>
