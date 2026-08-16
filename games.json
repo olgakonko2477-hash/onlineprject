@@ -1,0 +1,90 @@
+[
+  {
+    "id": "memory",
+    "title": "Сад английских цветов",
+    "description": "Соедини английские названия цветов с правильными картинками.",
+    "age": "6–9",
+    "level": "Starter",
+    "skill": "Vocabulary",
+    "topic": "Colours",
+    "image": "assets/moon-garden.png",
+    "type": "internal",
+    "internalKey": "memory"
+  },
+  {
+    "id": "lights",
+    "title": "Грамматика звёзд",
+    "description": "Зажигай звёзды, выбирая правильные формы английских предложений.",
+    "age": "8–12",
+    "level": "A1",
+    "skill": "Grammar",
+    "topic": "Basic grammar",
+    "image": "assets/star-mechanism.png",
+    "type": "internal",
+    "internalKey": "lights"
+  },
+  {
+    "id": "raven",
+    "title": "Кристаллы глаголов",
+    "description": "Собирай кристаллы с правильными формами неправильных глаголов.",
+    "age": "10+",
+    "level": "A1–A2",
+    "skill": "Grammar",
+    "topic": "Irregular verbs",
+    "image": "assets/raven-crystal.png",
+    "type": "internal",
+    "internalKey": "raven"
+  },
+  {
+    "id": "grammar-shooter",
+    "title": "Grammar Shooter",
+    "description": "Найди неправильный ответ и уничтожь его. Быстрая тренировка грамматики в формате шутера.",
+    "age": "8–13",
+    "level": "A1",
+    "skill": "Grammar",
+    "topic": "Grammar practice",
+    "url": "https://olgakonko2477-hash.github.io/grammar-shooter/",
+    "icon": "🎯",
+    "type": "external",
+    "isNew": true
+  },
+  {
+    "id": "sentence-builder3d",
+    "title": "Sentence Builder 3D",
+    "description": "Собирай английские предложения из коробок со словами в трёхмерном мире.",
+    "age": "8–13",
+    "level": "A1",
+    "skill": "Grammar",
+    "topic": "Present Simple",
+    "url": "https://olgakonko2477-hash.github.io/sentence-builder3D/",
+    "icon": "🧱",
+    "type": "external",
+    "isNew": true
+  },
+  {
+    "id": "monsters",
+    "title": "Академия забавных монстриков",
+    "description": "Учись английскому вместе с весёлыми монстриками и игровыми заданиями.",
+    "age": "6–10",
+    "level": "Starter–A1",
+    "skill": "Vocabulary",
+    "topic": "English basics",
+    "url": "https://olgakonko2477-hash.github.io/monsters/",
+    "icon": "👾",
+    "type": "external",
+    "isNew": true
+  },
+  {
+    "id": "magicbook",
+    "title": "The Secret English Book",
+    "description": "Таинственное английское приключение в атмосфере волшебной книги.",
+    "age": "7–12",
+    "level": "A1",
+    "skill": "Mixed",
+    "topic": "English practice",
+    "url": "https://olgakonko2477-hash.github.io/magicbook/",
+    "icon": "📖",
+    "type": "external",
+    "isNew": true
+  }
+]
